@@ -1,21 +1,20 @@
-const express = require('express');
-const { reverseString } = require("../stringFunctions");
+const express = require('express')
+const { reverseString } = require('../stringFunctions')
 
-function wordApi(app) {
+function wordApi (app) {
   const router = express.Router()
-  app.use("/", router);
+  app.use('/', router)
 
-  router.get("/iecho", async function (req, res, next) {
-    let { text } = req.query
+  router.get('/iecho', async function (req, res, next) {
+    const { text } = req.query
 
     if (text === undefined || text === null || !text) {
       res.status(400).json({
-        error: "no text"
+        error: 'no text'
       })
-
     } else {
       try {
-        let reverText = reverseString(text)
+        const reverText = reverseString(text)
         res.status(200).json({
           text: reverText
         })
@@ -23,8 +22,7 @@ function wordApi(app) {
         next(err)
       }
     }
-
   })
 }
 
-module.exports = wordApi;
+module.exports = wordApi

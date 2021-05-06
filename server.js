@@ -1,9 +1,12 @@
 
-const express = require('express');
+const express = require('express')
+const cors = require('cors')
 
-const app = express();
+const app = express()
 const wordApi = require('./src/routes/words')
 
-wordApi(app);
+app.use(cors())
+
+wordApi(app)
 
 module.exports = app

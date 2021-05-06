@@ -1,6 +1,6 @@
-const request = require('supertest');
-const app = require('../server');
-const chai = require('chai');
+const request = require('supertest')
+const app = require('../server')
+const chai = require('chai')
 const assert = chai.assert
 
 describe('GET /iecho', function () {
@@ -12,12 +12,12 @@ describe('GET /iecho', function () {
       .expect(400)
       .then(response => {
         assert(response.body, {
-          "error": "no text"
+          error: 'no text'
         })
-        done();
+        done()
       })
       .catch(err => done(err))
-  });
+  })
 
   it('response status 200 and json structure given', function (done) {
     request(app)
@@ -27,11 +27,10 @@ describe('GET /iecho', function () {
       .expect(200)
       .then(response => {
         assert(response.body, {
-          "error": "olleh"
+          error: 'olleh'
         })
-        done();
+        done()
       })
       .catch(err => done(err))
-  });
-});
-
+  })
+})
