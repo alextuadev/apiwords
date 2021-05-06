@@ -1,5 +1,5 @@
 const express = require('express')
-const { reverseString } = require('../stringFunctions')
+const { reverseString, palindrome } = require('../stringFunctions')
 
 function wordApi (app) {
   const router = express.Router()
@@ -15,8 +15,10 @@ function wordApi (app) {
     } else {
       try {
         const reverText = reverseString(text)
+        let pal = palindrome(text)
         res.status(200).json({
-          text: reverText
+          text: reverText,
+          palindrome: pal
         })
       } catch (err) {
         next(err)

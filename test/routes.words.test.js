@@ -12,7 +12,8 @@ describe('GET /iecho', function () {
       .expect(400)
       .then(response => {
         assert(response.body, {
-          error: 'no text'
+          error: 'no text',
+          palindrome: false
         })
         done()
       })
@@ -27,7 +28,25 @@ describe('GET /iecho', function () {
       .expect(200)
       .then(response => {
         assert(response.body, {
-          error: 'olleh'
+          error: 'olleh',
+          palindrome: false
+        })
+        done()
+      })
+      .catch(err => done(err))
+  })
+
+
+  it('response status 200 and json structure given, palindrome true', function (done) {
+    request(app)
+      .get('/iecho?text=racecar')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then(response => {
+        assert(response.body, {
+          error: 'racecar',
+          palindrome: true
         })
         done()
       })
